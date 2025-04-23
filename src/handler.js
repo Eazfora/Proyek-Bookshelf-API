@@ -1,5 +1,6 @@
-const { nanoid } = require("nanoid"); // Untuk ID Unik
-const bookShelf = require("./bookShelf");
+/* eslint-disable linebreak-style */
+const { nanoid } = require('nanoid'); // Untuk ID Unik
+const bookShelf = require('./bookShelf');
 
 const addBooks = (request, h) => {
   const {
@@ -35,8 +36,8 @@ const addBooks = (request, h) => {
 
   if (!name) {
     const response = h.response({
-      status: "fail",
-      message: "Gagal menambahkan buku. Mohon isi nama buku",
+      status: 'fail',
+      message: 'Gagal menambahkan buku. Mohon isi nama buku',
     });
     response.code(400);
     return response;
@@ -44,9 +45,9 @@ const addBooks = (request, h) => {
 
   if (readPage > pageCount) {
     const response = h.response({
-      status: "fail",
+      status: 'fail',
       message:
-        "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount",
+        'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
     });
     response.code(400);
     return response;
@@ -57,8 +58,8 @@ const addBooks = (request, h) => {
 
   if (isSuccess) {
     const response = h.response({
-      status: "success",
-      message: "Buku berhasil ditambahkan",
+      status: 'success',
+      message: 'Buku berhasil ditambahkan',
       data: {
         bookId: id,
       },
@@ -79,28 +80,24 @@ const getAllBooks = (request, h) => {
     );
   }
 
-  if (reading === "0") {
-    // eslint-disable-next-line no-undef
-    getBookFiltered = bookshelf.filter((book) => book.reading === false);
+  if (reading === '0') {
+    getBookFiltered = getBookFiltered.filter((book) => book.reading === false);
   }
 
-  if (reading === "1") {
-    // eslint-disable-next-line no-undef
-    getBookFiltered = bookshelf.filter((book) => book.reading === true);
+  if (reading === '1') {
+    getBookFiltered = getBookFiltered.filter((book) => book.reading === true);
   }
 
-  if (finished === "0") {
-    // eslint-disable-next-line no-undef
-    getBookFiltered = bookshelf.filter((book) => book.finished === false);
+  if (finished === '0') {
+    getBookFiltered = getBookFiltered.filter((book) => book.finished === false);
   }
 
-  if (finished === "1") {
-    // eslint-disable-next-line no-undef
-    getBookFiltered = bookshelf.filter((book) => book.finished === true);
+  if (finished === '1') {
+    getBookFiltered = getBookFiltered.filter((book) => book.finished === true);
   }
 
   const response = h.response({
-    status: "success",
+    status: 'success',
     data: {
       books: getBookFiltered.map((book) => ({
         id: book.id,
@@ -121,7 +118,7 @@ const getBookById = (request, h) => {
 
   if (book !== undefined) {
     const response = h.response({
-      status: "success",
+      status: 'success',
       data: {
         book,
       },
@@ -132,8 +129,8 @@ const getBookById = (request, h) => {
   }
 
   const response = h.response({
-    status: "fail",
-    message: "Buku tidak ditemukan",
+    status: 'fail',
+    message: 'Buku tidak ditemukan',
   });
 
   response.code(404);
@@ -161,8 +158,8 @@ const editBookById = (request, h) => {
 
   if (name === undefined) {
     const response = h.response({
-      status: "fail",
-      message: "Gagal memperbarui buku. Mohon isi nama buku",
+      status: 'fail',
+      message: 'Gagal memperbarui buku. Mohon isi nama buku',
     });
 
     response.code(400);
@@ -171,9 +168,9 @@ const editBookById = (request, h) => {
 
   if (readPage > pageCount) {
     const response = h.response({
-      status: "fail",
+      status: 'fail',
       message:
-        "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount",
+        'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
     });
 
     response.code(400);
@@ -196,16 +193,16 @@ const editBookById = (request, h) => {
     };
 
     const response = h.response({
-      status: "success",
-      message: "Buku berhasil diperbarui",
+      status: 'success',
+      message: 'Buku berhasil diperbarui',
     });
     response.code(200);
     return response;
   }
 
   const response = h.response({
-    status: "fail",
-    message: "Gagal memperbarui buku. Id tidak ditemukan",
+    status: 'fail',
+    message: 'Gagal memperbarui buku. Id tidak ditemukan',
   });
 
   response.code(404);
@@ -221,8 +218,8 @@ const deleteBookById = (request, h) => {
     bookShelf.splice(bookIndex, 1);
 
     const response = h.response({
-      status: "success",
-      message: "Buku berhasil dihapus",
+      status: 'success',
+      message: 'Buku berhasil dihapus',
     });
 
     response.code(200);
@@ -230,8 +227,8 @@ const deleteBookById = (request, h) => {
   }
 
   const response = h.response({
-    status: "fail",
-    message: "Buku gagal dihapus. Id tidak ditemukan",
+    status: 'fail',
+    message: 'Buku gagal dihapus. Id tidak ditemukan',
   });
 
   response.code(404);
